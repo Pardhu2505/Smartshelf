@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartShelf Inventory</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        📦 SmartShelf Inventory Management
+    </div>
+
+    <!-- Heading -->
+    <h1>Manage Your Inventory</h1>
+
+    <!-- Add Product Form -->
+    <form action="/add" method="POST">
+        <input type="text" name="name" placeholder="Enter Product Name" required>
+
+        <input type="text" name="category" placeholder="Enter Category" required>
+
+        <input type="number" name="stock" placeholder="Stock Quantity" required>
+
+        <input type="number" name="threshold" placeholder="Low Stock Threshold" required>
+
+        <input type="number" name="daily_usage" placeholder="Daily Usage" required>
+
+        <button type="submit">➕ Add Product</button>
+    </form>
+
+    <!-- Product List -->
+    <h1>Available Products</h1>
+
+    {% for product in data %}
+    <div class="product-card">
+
+        <!-- Product Name -->
+        <h3>📌 {{ product.name }}</h3>
+
+        <!-- Product Details -->
+        <p><strong>Category:</strong> {{ product.category }}</p>
+
+        <p><strong>Stock:</strong> {{ product.stock }}</p>
+
+        <p><strong>Threshold:</strong> {{ product.threshold }}</p>
+
+        <p><strong>Daily Usage:</strong> {{ product.daily_usage }}</p>
+
+        <!-- Stock Status -->
+        {% if product.stock <= product.threshold %}
+            <p class="low-stock">⚠ Low Stock Alert</p>
+        {% else %}
+            <p class="available">✅ Stock Available</p>
+        {% endif %}
+
+        <!-- Days Left Prediction -->
+        <p class="days-left">
+            ⏳ {{ (product.stock / product.daily_usage)|round(1) }} days left
+        </p>
+
+    </div>
+    {% endfor %}
+
+</body>
+</html>
