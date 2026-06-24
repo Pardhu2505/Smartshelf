@@ -4,7 +4,7 @@ from pymongo import MongoClient
 app = Flask(__name__)
 
 # Connect to MongoDB
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient("mongodb+srv://vtu29179_db_user:<db_password>@cluster0.ji0t12u.mongodb.net/?appName=Cluster0")
 
 # Database
 db = client["smartshelf"]
