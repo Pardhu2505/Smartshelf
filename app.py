@@ -6,7 +6,7 @@ app = Flask(__name__)
 # Connect to MongoDB
 from pymongo import MongoClient
 
-client = MongoClient("mongodb+srv://vtu29179_db_user:<db_password>%40cluster0.ji0t12u.mongodb.net/?appName=Cluster0")
+client = MongoClient("mongodb+srv://vtu29179_db_user:<1stF4pbYnwdE4WlF>@cluster0.ji0t12u.mongodb.net/?appName=Cluster0")
 db = client["smartshelf"]
 products = db["products"]
 
